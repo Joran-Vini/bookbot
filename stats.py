@@ -10,9 +10,24 @@ def get_unique_letters(book):
     book_split = book.split()
     for word in book_split:
         for letter in word:
+            if not letter.isalpha():
+                continue
             letter = letter.lower()
             if letter in dictionary:
                 dictionary[letter] += 1
             else:
                 dictionary[letter] = 1
     return dictionary
+
+def sort_dictionary(dictionary):
+    list = []
+    for key, value in dictionary.items():
+        new_dict = {}
+        new_dict["char"] = key
+        new_dict["num"] = value
+        list.append(new_dict)
+        list.sort(key=sort_on, reverse=True)
+    return list
+
+def sort_on(item):
+    return item["num"]           
